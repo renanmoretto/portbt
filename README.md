@@ -74,12 +74,12 @@ date
 
 ## Portfolio functions
 ```
-Portfolio.backtest_with_rebalance() -> dict
+Portfolio.backtest_with_rebalance() -> Backtest
     Optional parameters:
         rebal_weights: dict | str,
         rebal_freq: str,
 
-Portfolio.backtest_without_rebalance() -> dict
+Portfolio.backtest_without_rebalance() -> Backtest
     Optional parameters:
         start_weights: dict | str,
 ```

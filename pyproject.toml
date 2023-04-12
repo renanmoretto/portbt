@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "portbt"
-version = "0.1.1"
-description = ""
+version = "0.1.2"
+description = "Python library designed to make portfolio backtesting easy and intuitive"
 authors = ["renanmoretto <himynameisrenan@outlook.com>"]
 readme = "README.md"
+license = "MIT"
+repository = "https://github.com/renanmoretto/portbt"
 
 [tool.poetry.dependencies]
 python = "^3.11"

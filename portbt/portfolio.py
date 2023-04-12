@@ -6,7 +6,7 @@ from .backtest_functions import backtest_with_rebalance, backtest_without_rebala
 
 class Backtest:
     def __init__(self):
-        self.prices: DataFrame | Series = pd.DataFrame()
+        # self.prices: DataFrame | Series = pd.DataFrame() # can delete this
         self.values: DataFrame | Series = pd.DataFrame()
         self.exposure: DataFrame | Series = pd.DataFrame()
         self.result: DataFrame | Series = pd.DataFrame()

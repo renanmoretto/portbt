@@ -3,6 +3,7 @@ from pandas import DataFrame, Series
 from typing import Union
 
 from .backtest_functions import backtest_with_rebalance, backtest_without_rebalance
+from .utils import format_prices
 
 
 class Backtest:
@@ -26,18 +27,18 @@ class Backtest:
 
 class Portfolio:
     def __init__(self, prices: DataFrame = pd.DataFrame()):
-        self.prices = prices
+        self.prices = format_prices(prices)
 
     @property
     def tickers(self):
         return self.prices.columns.to_list()
 
     def run_backtest(
-            self,
-            rebalance: bool,
-            weights: Union[str, dict] = "ew",
-            rebal_freq: str = "1M",
-            ) -> Backtest:
+        self,
+        rebalance: bool,
+        weights: Union[str, dict] = "ew",
+        rebal_freq: str = "1M",
+    ) -> Backtest:
         """
         Create the Backtest object for the imported prices.
         -----
@@ -60,7 +61,11 @@ class Portfolio:
                 Rebalance frequency. Has the same valid inputs as pandas.DataFrame.resample() function.
         """
         if rebalance:
-            backtest_results = backtest_with_rebalance(prices=self.prices, rebal_weights=weights, rebal_freq=rebal_freq)
+            backtest_results = backtest_with_rebalance(
+                prices=self.prices, rebal_weights=weights, rebal_freq=rebal_freq
+            )
         else:
-            backtest_results = backtest_without_rebalance(prices=self.prices, start_weights=weights)
+            backtest_results = backtest_without_rebalance(
+                prices=self.prices, start_weights=weights
+            )
         return Backtest().set_parameters(backtest_results)

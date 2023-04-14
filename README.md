@@ -44,8 +44,9 @@ date
 ```python
 portfolio = pbt.Portfolio(prices)
 
-backtest = portfolio.run_backtest_without_rebalance()
+backtest = portfolio.run_backtest(rebalance=False)
 
+# backtest.prices -> prices for each asset, "raw data"
 # backtest.values -> values for each asset (starting capital = 1)
 # backtest.exposure -> exposure for each asset
 # backtest.result -> backtest result, starting from 1
@@ -72,18 +73,33 @@ date
 2023-04-10  0.255589  0.103228  0.145400  0.130815  0.139155  0.225814
 ```
 
-## Portfolio functions
+## Portfolio backtesting - main function
 ```
-Portfolio.backtest_with_rebalance() -> Backtest
-    Optional parameters:
-        rebal_weights: dict | str,
-        rebal_freq: str,
+Portfolio.run_backtest() -> Backtest
 
-Portfolio.backtest_without_rebalance() -> Backtest
-    Optional parameters:
-        start_weights: dict | str,
+    Parameters:
+
+        - rebalance: bool (required)
+            If 'True', the backtest will rebalance itself.
+
+        - weights: str or dict, default 'ew'
+            If 'dict', than it is the weight for each asset (number between 0 and 1),
+            The sum can't be different than one.
+            Example:
+                asset_weights = {
+                    'asset1': 0.3,
+                    'asset2': 0.2,
+                    'asset3': 0.5,
+                }
+            If str (has to be 'ew'), runs the backtest using equal weight for all 
+            assets (1 / number of assets).
+
+        - rebal_freq: str, default '1M'
+            Rebalance frequency. Has the same valid inputs as pandas.DataFrame.resample() 
+            function.
 ```
 
 ## TODO
 - Performance metrics and visualizations
 - Reports
+- Yahoo Finance implementation

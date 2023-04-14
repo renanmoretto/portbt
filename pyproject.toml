@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portbt"
-version = "0.1.4"
+version = "0.1.6"
 description = "Python library designed to make portfolio backtesting easy and intuitive"
 authors = ["renanmoretto <himynameisrenan@outlook.com>"]
 readme = "README.md"
